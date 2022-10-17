@@ -4,7 +4,7 @@
 #include "main.h"
 
 /**
- * checkConversionspecifier - function that validates conversion specifiers
+ * Conversionspecifier - function that validates conversion specifiers
  * @format: string with format specification
  * @length: stores the count of characters displayed
  * @args: the values passed to _printf to be displayed
@@ -13,7 +13,7 @@
  *
  *
  */
-int checkConversionspecifier(const char *format, unsigned int *length, va_list args)
+int Conversionspecifier(const char *format, unsigned int *length, va_list args)
 {
 	unsigned int i;
 	print_t p[] = {
@@ -55,7 +55,7 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	va_start(args, format);
-	while(format[i])
+	while (format[i])
 	{
 		for (; format[i] != '%' && format[i]; i++)
 		{
@@ -64,7 +64,7 @@ int _printf(const char *format, ...)
 		}
 		if (!format[i])
 			return (count);
-		if (checkConversionspecifier(&format[i + 1], &count, args))
+		if (Conversionspecifier(&format[i + 1], &count, args))
 		{
 			i += 2;
 			continue;
