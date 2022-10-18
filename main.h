@@ -2,17 +2,39 @@
 #define _MAIN_H_
 
 #include <stdarg.h>
+#include <stdio.h>
+#include <unistd.h>
 /**
  * struct print - structure for printing various types
  * @t: type to print
  * @f: function to print
  */
+#define UNUSED(x) (void)(x)
+#define BUFF_SIZE 1024
+
+/* SIZES */
+#define S_LONG 2
+#define S_SHORT 1
+
+
+/* FLAGS */
+#define F_MINUS 1
+#define F_PLUS 2
+#define F_ZERO 4
+#define F_HASH 8
+#define F_SPACE 16
+
+
+
 typedef struct print
 {
 	char *t;
 	int (*f)(va_list);
 } print_t;
 
+int get_flags(const char *format, int *i);
+int get_width(const char *format, int *i, va_list list);
+int get_precision(const char *format, int *i, va_list list);
 int _putchar(char c);
 int _printf(const char *format, ...);
 int print_c(va_list c);
